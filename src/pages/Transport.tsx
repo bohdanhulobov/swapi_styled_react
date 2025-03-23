@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Typography,
-  Paper,
-  Tabs,
-  Tab,
-  List,
-  ListItem,
-} from "@mui/material";
+import { Container, Typography, Paper, Tabs, Tab } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import { VehiclesAPI, StarshipsAPI } from "../services/api";
 import { Vehicle, Starship } from "../types";
 import EntityCard from "../components/EntityCard";
@@ -117,34 +110,16 @@ const Transport: React.FC = () => {
         </Paper>
       )}
 
-      <List
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          flexDirection: "row",
-          gap: 3,
-          padding: 0,
-          justifyContent: "center",
-        }}
-      >
+      <Grid container spacing={3}>
         {currentTransport.map((transport) => (
-          <ListItem
-            key={transport.url}
-            sx={{
-              padding: 0,
-              display: "block",
-              width: { xs: "100%", sm: "45%", md: "30%", lg: "22%" },
-              flexGrow: 0,
-              flexShrink: 0,
-            }}
-          >
+          <Grid size={4} key={transport.name}>
             <EntityCard
               name={transport.name}
               onClick={() => handleTransportClick(transport)}
             />
-          </ListItem>
+          </Grid>
         ))}
-      </List>
+      </Grid>
 
       {currentTotalPages > 1 && (
         <Pagination

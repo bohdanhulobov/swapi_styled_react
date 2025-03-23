@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Container, Typography, Paper, List, ListItem } from "@mui/material";
+import { Container, Typography, Paper } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import { PeopleAPI } from "../services/api";
 import { Person } from "../types";
 import EntityCard from "../components/EntityCard";
@@ -66,34 +67,16 @@ const Characters: React.FC = () => {
         </Paper>
       )}
 
-      <List
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          flexDirection: "row",
-          gap: 3,
-          padding: 0,
-          justifyContent: "center",
-        }}
-      >
+      <Grid container spacing={3}>
         {characters.map((character) => (
-          <ListItem
-            key={character.url}
-            sx={{
-              padding: 0,
-              display: "block",
-              width: { xs: "100%", sm: "45%", md: "30%", lg: "22%" },
-              flexGrow: 0,
-              flexShrink: 0,
-            }}
-          >
+          <Grid size={4} key={character.name}>
             <EntityCard
               name={character.name}
               onClick={() => handleCharacterClick(character)}
             />
-          </ListItem>
+          </Grid>
         ))}
-      </List>
+      </Grid>
 
       {totalPages > 1 && (
         <Pagination

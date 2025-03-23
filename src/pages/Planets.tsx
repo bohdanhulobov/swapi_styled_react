@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Container, Typography, Paper, List, ListItem } from "@mui/material";
+import { Container, Typography, Paper } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import { PlanetsAPI } from "../services/api";
 import { Planet } from "../types";
 import EntityCard from "../components/EntityCard";
@@ -64,34 +65,16 @@ const Planets: React.FC = () => {
         </Paper>
       )}
 
-      <List
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          flexDirection: "row",
-          gap: 3,
-          padding: 0,
-          justifyContent: "center",
-        }}
-      >
+      <Grid container spacing={3}>
         {planets.map((planet) => (
-          <ListItem
-            key={planet.url}
-            sx={{
-              padding: 0,
-              display: "block",
-              width: { xs: "100%", sm: "45%", md: "30%", lg: "22%" },
-              flexGrow: 0,
-              flexShrink: 0,
-            }}
-          >
+          <Grid size={4} key={planet.name}>
             <EntityCard
               name={planet.name}
               onClick={() => handlePlanetClick(planet)}
             />
-          </ListItem>
+          </Grid>
         ))}
-      </List>
+      </Grid>
 
       {totalPages > 1 && (
         <Pagination

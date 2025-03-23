@@ -1,14 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Container,
-  Typography,
-  Button,
-  Box,
-  Paper,
-  List,
-  ListItem,
-} from "@mui/material";
+import { Container, Typography, Button, Box, Paper } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import PersonIcon from "@mui/icons-material/Person";
 import PublicIcon from "@mui/icons-material/Public";
 import DirectionsTransitIcon from "@mui/icons-material/DirectionsTransit";
@@ -56,23 +49,9 @@ const Home: React.FC = () => {
         </Typography>
       </Box>
 
-      <List
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          gap: 4,
-          padding: 0,
-        }}
-      >
+      <Grid container spacing={2}>
         {sections.map((section) => (
-          <ListItem
-            key={section.path}
-            sx={{
-              width: "100%",
-              padding: 0,
-              display: "block",
-            }}
-          >
+          <Grid size={4} key={section.title}>
             <Paper
               elevation={3}
               sx={{
@@ -109,9 +88,9 @@ const Home: React.FC = () => {
                 Explore {section.title}
               </Button>
             </Paper>
-          </ListItem>
+          </Grid>
         ))}
-      </List>
+      </Grid>
     </Container>
   );
 };
